@@ -1,0 +1,43 @@
+*, 
+*:before, 
+*:after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+.navbar-right a:hover {    
+    box-shadow: inset 0px 0px 15px var(--back-color), 0 0 15px var(--back-color);
+    }
+
+/* Hero section - backgrounf image and the quote text*/
+
+/* .container{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url("./Assets/hero\ img.jpg");
+} */
+
+
+.hero {
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url("./Assets/hero\ img.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    }
+
+.hero-text{
+    text-align: center;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    color: var(--back-color);
+    }
