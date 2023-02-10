@@ -30,32 +30,41 @@ var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
 // Create a function to pull search results off of homepage
 // Pushes to 'Search Page'
 
-$(function () {
-    var $events = $('#events');
+var eventListHTML = ``;
 
-    $.ajax({
-        type:"GET",
-        url:"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi",
-        async:true,
-        dataType: "json",
-        success: function(events) {
-            console.log(typeof(events));
-            $.each(events, function(i, event)
-            {$events.append('<li>my events </li>')});
-                    console.log(json);
-                    JSON.parse(json);
-                    console.log(json);
-                    
-                    // Parse the response.
-                    // Do other things.
-                 },
-        error: function(xhr, status, err) {
-                    // This time, we do not end up here!
-                 }
-      });
-})
+fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi")
+    .then(function (data) {
+    data.json().then(function (eventResponse) {
+        console.log(eventResponse);
 
+        // var eventsArray = [];
 
+        for (var i = 0; i < 10; i++) {
+            
+            
+            // eventsArray.push(eventsArray[i]);
+            console.log(eventResponse._embedded.events[i].name);
+            console.log(eventResponse._embedded.events[i].dates.start.localDate);
+            console.log(eventResponse._embedded.events[i].dates.start.localTime);
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].name);
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
 
-// 
+            // console.log(eventsArray);
+    
+            eventListHTML = `<div> <br> <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
+            <ul id="events"> Event Name: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+            <ul id="events"> Event Name: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+            <ul id="events"> Event Name: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+            <ul id="events"> Event Name: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+            </div> `;
+
+            document.querySelector('#eventList').innerHTML+= eventListHTML;
+
+            // $('#eventList').html(eventListHTML);
+        } 
+       
+        // var eventsArray = [];
+        // populateEventList(eventResponse);
+    }) 
+}) 
 
