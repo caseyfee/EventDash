@@ -41,8 +41,6 @@ fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=
         // var eventsArray = [];
 
         for (var i = 0; i < 10; i++) {
-            
-            
             // eventsArray.push(eventsArray[i]);
             console.log(eventResponse._embedded.events[i].name);
             console.log(eventResponse._embedded.events[i].dates.start.localDate);
@@ -53,10 +51,10 @@ fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=
             // console.log(eventsArray);
     
             eventListHTML = `<div> <br> <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
-            <ul id="events"> Event Name: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-            <ul id="events"> Event Name: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-            <ul id="events"> Event Name: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-            <ul id="events"> Event Name: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+            <ul id="events"> Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+            <ul id="events"> Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+            <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+            <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
             </div> `;
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
