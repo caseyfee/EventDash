@@ -30,21 +30,32 @@ var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
 // Create a function to pull search results off of homepage
 // Pushes to 'Search Page'
 
-$.ajax({
-    type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi",
-    async:true,
-    dataType: "json",
-    success: function(json) {
-                console.log(json);
-                JSON.parse(json);
-                // Parse the response.
-                // Do other things.
-             },
-    error: function(xhr, status, err) {
-                // This time, we do not end up here!
-             }
-  });
+$(function () {
+    var $events = $('#events');
+
+    $.ajax({
+        type:"GET",
+        url:"https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi",
+        async:true,
+        dataType: "json",
+        success: function(events) {
+            console.log(typeof(events));
+            $.each(events, function(i, event)
+            {$events.append('<li>my events </li>')});
+                    console.log(json);
+                    JSON.parse(json);
+                    console.log(json);
+                    
+                    // Parse the response.
+                    // Do other things.
+                 },
+        error: function(xhr, status, err) {
+                    // This time, we do not end up here!
+                 }
+      });
+})
+
+
 
 // 
 
