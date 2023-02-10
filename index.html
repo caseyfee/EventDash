@@ -4,81 +4,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FetchYaPet</title>
+    <title>EventDash</title>
     <link rel="stylesheet" href="style.css">
     <!-- Link to tailwinds -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <!-- jquery-->
-        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" 
-            integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+        <!-- jquery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="crossorigin="anonymous"></script>
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
+<body class="hero">
 
-<body>
 
-    <header><blockquote class="text-6xl p-6 font-semibold italic text-center text-slate-900">
-            Fetch
-            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
-              <span class="relative text-white">Ya</span>
-            </span>
-            Pet
-          </blockquote></header>
-         <div class="text-center">
-        <h1 class="webpage-title"></h1>
-        <h2 class="subheading">enter subheading here</h2>
-        </div>
-    </header>
+    <!-- Sticky NavBar -->
+    <nav>
+        <div class="bg-gray-100">
+            <header class="sticky top-0 z-30 w-full px-2 py-4 bg-white sm:px-4 shadow-xl">
+              <div class="flex items-center justify-between mx-auto max-w-8xl">
+
+                <!-- May consider adding a link here, if not then can delete it -->
+                <a href="#">
+                    <blockquote class="text-7xl p-6 font-semibold italic text-start text-slate-900">
+                        Event
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+                          <span class="relative text-white">Dash</span>
+                        </span>
+                      </blockquote>
+                </a>
+                <div class="flex items-center space-x-1">
+                  <ul class="hidden space-x-2 md:inline-flex">
+                    <li><a href="#" class="px-4 py-2 font-semibold text-gray-600 rounded">Home</a></li>
+                    <li><a href="#" class="px-4 py-2 font-semibold text-gray-600 rounded">Contact Us</a></li>
+                  </ul>
+                  <div class="inline-flex md:hidden">
+                    <button class="flex-none px-2 ">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                      </svg>
+                      <span class="sr-only">Open Menu</span>
+                    </button>
+                    <!-- put list item -->
+                  </div>
+                </div>
+              </div>
+            </header>
+          
+          </div>
+    </nav>
 
     <!-- main body -->
-    <div class=" flex flex-wrap justify-between py-5 main-body">
-
-        <!-- left content column begin -->
-        <div class=" flex flex-col  border-2 border-red-500 w-1/2 left-content-column py-5 ">
-            <div class=" py-5 content-top">
-                <h3>Title for content</h3>
-                <img src="" alt="" class="image-1">
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-
-                <ul id="events"> Events</ul>
-
-            </div>
-            <br>
-            <div class="content-bottom">
-                <h3>Title for content</h3>
-                <img src="" alt="" class="image-2">
-                <p>hello</p>
-                <p>hello</p>
-                <p>hello</p>
-            </div>
-        </div>
-        <!-- left content column end -->
+    <div class=" hero flex flex-wrap justify-between py-5 main-body">
 
         <!-- right content column begin -->
-        <div class="flex flex-wrap border-2 border-green-500 w-1/2 right-content-column py-5 ">
-            <div class="">
-                <h2 class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut nisl convallis, lobortis dui vulputate, sodales diam</h2>
+        <div class="border-2 border-green-500 search-container py-5 ">
+            <div class="text-white">
+                <h2 class="text-4xl">Looking for something to do ner you? </h2></br>
+                <p>Enter your Address to find Events near you</p></br>
             </div>
 
             <!-- search container -->
-            <form class="border-2 border-blue-500 search-form py-5  gap-2">
-                <input type="text" name="location" id="location" placeholder="Enter your location">
-                <input type="text" name="location" id="location" placeholder="Enter your location">
-                <input type="text" name="location" id="location" placeholder="Enter your location">
-                <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Search</button>           
-            </form>
+
+            <div class="flex items-center justify-center">
+                <div class="flex border-2 rounded">
+                    <input type="text" class="px-4 py-2 w-80" placeholder="Enter Your Address">
+                    <button class="flex items-center justify-center px-4 border-l">
+                        <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
         </div>
 
           <!-- random pet fact display -->
           <div class="border-2 border-purple-500 fact-container py-5 ">
-            <div class="fact-1">
+            <div class="fact-1 text-white">
                 <h2 class="fact-heading">Fact 1</h2>
                     <p class="fact-1-content">Duis lobortis, dolor eget faucibus aliquam, magna nunc molestie nibh, id suscipit dui mi vitae lorem. Nunc non erat consectetur, elementum turpis id, pretium leo. Praesent eget eros et augue ullamcorper luctus vitae ut nunc. Cras et neque sed sem condimentum blandit. Phasellus mattis sed turpis sit amet porttitor. </p>
                 <h2 class="fact-heading">Fact 2</h2>
@@ -88,7 +94,9 @@
         <!-- right content column end -->
     </div>
     
-    
+    <footer class="flex justify-center border-2 border-purple-500 fact-container py-5 " >
+<p>CopyRight @ EventDash</p> <i class="fa-solid fa-shoe-prints"></i>
+    </footer>
 <script scr="script.js"></script>
 </body>
 </html>
