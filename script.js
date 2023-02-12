@@ -26,12 +26,16 @@ var ticketMasterLA = "https://app.ticketmaster.com/discovery/v2/events.json?clas
 // TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
 // Dom variables
 
+var startLat = "41.837285";
+var startLon = "-88.284333";
 
 
 // Create a function to pull search results off of homepage
 // Pushes to 'Search Page'
 
 var eventListHTML = ``;
+var eventLat = "";
+var eventLon = "";
 
 fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi")
     .then(function (data) {
