@@ -55,11 +55,16 @@ fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=
             <ul id="events"> Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
             <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
             <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
-            </div> `;
+            </div> 
+            <button class="flex items-center justify-center px-4 border-l" id=eventAddress>
+                        <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+                        </svg>
+                    </button>`;
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
-
-            // $('#eventList').html(eventListHTML);
         } 
        
         // var eventsArray = [];
@@ -68,19 +73,4 @@ fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=
 }) 
 // function populateEventList(eventResponse) {
 
-    
-
-    
-
-// } 
-
-
-
-
-
-
-
-
-
-// 
 
