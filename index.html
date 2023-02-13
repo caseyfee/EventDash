@@ -22,38 +22,38 @@
        <div>
             <header class="fixed top-0 z-30 w-full px-1 py-3 bg-white sm:px-4 shadow-xl">
                 <div class=" flex items-center justify-between mx-auto max-w-8xl">
+                    <blockquote class="text-6xl p-6 font-semibold italic text-start text-slate-900">
+                        Event
+                        <span
+                            class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+                            <span class="relative text-white">Dash</span>
+                        </span>
+                    </blockquote>
 
-                    <!-- May consider adding a link here, if not then can delete it -->
-                    <a href="#">
-                        <blockquote class="text-6xl p-6 font-semibold italic text-start text-slate-900">
-                            Event
-                            <span
-                                class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
-                                <span class="relative text-white">Dash</span>
-                            </span>
-                        </blockquote>
-                    </a>
-
+                    <!-- Navigation Links -->
                     <div class="flex items-center space-x-1">
                         <ul class="hidden space-x-2 md:inline-flex">
                             <li><a href="#" class="px-4 py-2 font-semibold text-black">Home</a></li>
-                            <li><a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event
-                                    Search</a>
-                            </li>
-                            <li><a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact
-                                    Us</a></li>
+                            <li><a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event Search</a></li>
+                            <li><a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact Us</a></li>
                         </ul>
-                        <div class="inline-flex md:hidden">
-                            <button class="flex-none px-2 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+
+                        <!-- Responsive Mobile Design for menu bar to hide the links when the application is open in the mobile devices  -->
+                        <div class="menu-bar inline-flex md:hidden">
+                            <button onclick="openMenu()" class="menubtn flex-none px-5 py-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 8h16M4 16h16" />
                                 </svg>
                                 <span class="sr-only">Open Menu</span>
                             </button>
-                            <!-- put list item -->
-                        </div>
+                            <div id="myMenu" class="menu-content">
+                            <a href="#" class="px-4 py-2 font-semibold text-black">Home</a>
+                            <a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event Search</a>
+                            <a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact Us</a>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </header>
@@ -65,12 +65,12 @@
 
         <!-- right content column begin -->
         <!-- order-2 border-green-500 -->
-        <div class=" w-screen justify-center text-white search-container py-10 gap-10">
-            <div class="flex items-center justify-center">
+        <div class=" w-screen justify-center search-container py-10 gap-10">
+            <div class="flex items-center text-white justify-center">
                 <h2 class="text-4xl" id="search-bar">Let us help you find your dream concert! </h2>
             </div>
 
-            <div class="flex items-center justify-center">
+            <div class="flex items-center text-white justify-center">
                 <p>Enter your address below to find events near you.</p></br>
             </div>
 
@@ -79,7 +79,7 @@
                 <div class="flex border-2 rounded">
                     <input type="text" class="px-4 py-2 w-80" placeholder="Enter Your Address">
                     <button onclick="enterAddress()" class="flex items-center justify-center px-4 border-l">
-                        <svg class="w-6 h-6 text-pink-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="w-6 h-6 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
                             <path
                                 d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
@@ -116,6 +116,7 @@
             <!-- Font Awesome - Shoe prints -->
         </div>
     </footer>
+    <script src="navbarmenu.js"></script>
     <script src="script.js"></script>
 </body>
 
