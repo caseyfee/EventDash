@@ -17,15 +17,15 @@
 </head>
 
 <body class="hero">
-    <!-- Sticky NavBar -->
-    <nav>
-        <div class="bg-gray-100">
-            <header class="sticky top-0 z-30 w-full px-2 py-4 bg-white sm:px-4 shadow-xl">
-                <div class="flex items-center justify-between mx-auto max-w-8xl">
+    <!--"Fixed Top-0" NavBar - nav bar will remain on top during scrolling -->
+    <nav >
+       <div>
+            <header class="fixed top-0 z-30 w-full px-1 py-3 bg-white sm:px-4 shadow-xl">
+                <div class=" flex items-center justify-between mx-auto max-w-8xl">
 
                     <!-- May consider adding a link here, if not then can delete it -->
                     <a href="#">
-                        <blockquote class="text-7xl p-6 font-semibold italic text-start text-slate-900">
+                        <blockquote class="text-6xl p-6 font-semibold italic text-start text-slate-900">
                             Event
                             <span
                                 class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
@@ -33,13 +33,14 @@
                             </span>
                         </blockquote>
                     </a>
+
                     <div class="flex items-center space-x-1">
                         <ul class="hidden space-x-2 md:inline-flex">
-                            <li><a href="#" class="px-4 py-2 font-semibold text-gray-600 rounded">Home</a></li>
-                            <li><a href="#search-bar" class="px-4 py-2 font-semibold text-gray-600 rounded">Event
+                            <li><a href="#" class="px-4 py-2 font-semibold text-black">Home</a></li>
+                            <li><a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event
                                     Search</a>
                             </li>
-                            <li><a href="#contact-us" class="px-4 py-2 font-semibold text-gray-600 rounded">Contact
+                            <li><a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact
                                     Us</a></li>
                         </ul>
                         <div class="inline-flex md:hidden">
@@ -56,22 +57,25 @@
                     </div>
                 </div>
             </header>
-
         </div>
     </nav>
 
     <!-- main body -->
-    <div class=" hero flex flex-wrap justify-between py-5 main-body">
+    <div class="hero place-content-center pt-40 pb-40 main-body backdrop-opacity-10">
 
         <!-- right content column begin -->
-        <div class="border-2 border-green-500 search-container py-5 ">
-            <div class="text-white">
-                <h2 class="text-4xl" id="search-bar">Let us help you find your dream concert! </h2></br>
+        <!-- order-2 border-green-500 -->
+        <div class=" w-screen justify-center text-white search-container py-10 gap-10">
+            <div class="flex items-center justify-center">
+                <h2 class="text-4xl" id="search-bar">Let us help you find your dream concert! </h2>
+            </div>
+
+            <div class="flex items-center justify-center">
                 <p>Enter your address below to find events near you.</p></br>
             </div>
 
             <!-- search container -->
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center py-10">
                 <div class="flex border-2 rounded">
                     <input type="text" class="px-4 py-2 w-80" placeholder="Enter Your Address">
                     <button onclick="enterAddress()" class="flex items-center justify-center px-4 border-l">
@@ -87,7 +91,7 @@
         </div>
 
         <!-- Event details display -->
-        <div class="border-2 border-purple-500 fact-container py-5 ">
+        <div class="hide border-2 border-purple-500 fact-container py-5 ">
             <div class="fact-1 text-white">
                 <h2 class="fact-heading" id="eventList"></h2>
                 <!-- <p class="fact-1-content">Duis lobortis, dolor eget faucibus aliquam, magna nunc molestie nibh, id suscipit dui mi vitae lorem. Nunc non erat consectetur, elementum turpis id, pretium leo. Praesent eget eros et augue ullamcorper luctus vitae ut nunc. Cras et neque sed sem condimentum blandit. Phasellus mattis sed turpis sit amet porttitor. </p> -->
@@ -98,16 +102,18 @@
         <!-- right content column end -->
     </div>
 
-    <footer class="flex justify-center border-2 border-purple-500 fact-container py-5" id="contact-us">
-        <div class="contact">
-            <p>Contact Us</p>
-            <a href="mailto:webmaster@example.com">Email</a><br>
-            Social Media<br>
+     <!--"Fixed Top-0" NavBar - nav bar will remain on top during scrolling -->
+    <footer class="fixed bottom-0 z-30 w-full columns-1 flex items-center justify-center  space-x-11 bg-white text-black fact-container" id="contact-us">
+        <div class="flex text-center py-1 gap-10 contact">
+            <p class="py-1 self-center">Contact Us</p>
+            <!-- <a href="mailto:webmaster@example.com">Email</a><br> -->
+            <p class="py-1 self-center">Social Media</p>
             <!-- Social media icons: GitHub -->
-            <i class="fa-brands fa-github-alt"></i>
+            <i class="py-1 self-center fa-brands fa-github-alt"></i>
+        </div>
+        <div class="py-1 flex self-center">
             <p>Copyright © 2023 EventDash Inc.</p>
             <!-- Font Awesome - Shoe prints -->
-
         </div>
     </footer>
     <script src="script.js"></script>
