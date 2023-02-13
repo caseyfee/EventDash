@@ -6,22 +6,54 @@ var bingAPI = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi"
 var ticketMasterAPI = "rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
 // ticketMaster Sercret:
 var ticketMasterSecret = "fp9pomMQ54vqq3rd";
-
 var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
-var ticketMasterLA = "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
 
 // ticket example URL searches with our API key
-// Get a list of all events in the United States https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
 // Search for music events in the Los Angeles area https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
-// Get a list of all events for Adele in Canada https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
 // TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
-// Dom variables
 
+
+var startingAddress = "";
 var startLat = "41.837285";
 var startLon = "-88.284333";
+var eventListHTML = ``;
+var eventLat = "";
+var eventLon = "";
+var radius = "10"; 
+var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
+
+
+var startingAddressEl = document.getElementById("search-bar");
+
+
 
 
 // User inputs starting address - 
+
+var enterAddress = function(){
+    startingAddress = startingAddressEl.value.trim();
+
+    if (startingAddress) {
+        getEventInfo(startingAddress);
+
+
+    // LOCAL STORAGE STARTING CODE
+        // let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+        // if (!searchHistory.includes(startingAddress)) {
+        //     searchHistory.push(startingAddress);
+        //     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        //     
+        // }
+
+        // mainSearchInput.textContent = '';
+        startingAddressEl.value = '';
+        console.log(startingAddressEl);
+    }
+    else {
+        console.log("there is an issue");
+    }
+}
+
 
     // Start function - onclick button to ssave address and send to TM
     // Validitation of the address step? Use modal to tell user it didn't work
@@ -40,13 +72,10 @@ var startLon = "-88.284333";
 // Create a function to pull search results off of homepage
 // Pushes to 'Search Page'
 
-var eventListHTML = ``;
-var eventLat = "";
-var eventLon = "";
-var radius = "50"; 
-// may need to be # ^^
 
-fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi")
+var getEventInfo = function (startingAddress) {
+
+    fetch(userSearchLatLonURL)
     .then(function (data) {
     data.json().then(function (eventResponse) {
         console.log(eventResponse);
@@ -89,11 +118,34 @@ fetch("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=
     }) 
 }) 
 
+
+}
+
+
+
+
 // User chooses an event using the button and event address is sent to Bing
     // Use modal?
     // POTENTIALLY EXTRA TASK - add functionality of map (share it with user's phone or something)
 
 
-
+// POTENTIAL LOCAL STORAGE RECALL - FROM MY WEATHER APP SO IT WILL CREATE BUTTONS FOR OLD SEARCHES
+    // function displayHistory() {
+    //     var previousSearchesHTML = ``;
+    
+    //     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    
+    //     for (var i = 0; i < searchHistory.length; i++) {
+    //         const city = searchHistory[i];
+    //         previousSearchesHTML += `
+    //         <a type="button" onclick="getCityInfo('${city}')">
+    //             <span class="input-group-text border-0 fw-bold" >
+    //                 ${city}
+    //             </span>
+    //         </a>`
+    //     }
+    //     // NEEDS updating if we want to include buttons
+    //     $('#previousCities').html(previousSearchesHTML);
+    // }
 // Bing returns a map with starting and ending address
 
