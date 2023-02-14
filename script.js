@@ -14,50 +14,59 @@ var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
 
 
 var startingAddress = "";
-var startLat = "41.837285";
-var startLon = "-88.284333";
+// populated from bing/IP address
+var startLat = "";
+var startLon = "";
 var eventListHTML = ``;
 var eventLat = "";
 var eventLon = "";
 var radius = "10"; 
-var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
 
 var startingAddressEl = document.getElementById("search-bar");
 
+// var startAddress = "";
 
 
 
 // User inputs starting address - 
+// Start function - onclick button to ssave address and send to TM
+var enterAddress = async function(){
+    // startingAddress = startingAddressEl.value.trim();
 
-var enterAddress = function(){
-    startingAddress = startingAddressEl.value.trim();
-
-    if (startingAddress) {
-        getEventInfo(startingAddress);
-
-
-    // LOCAL STORAGE STARTING CODE
-        // let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-        // if (!searchHistory.includes(startingAddress)) {
-        //     searchHistory.push(startingAddress);
-        //     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-        //     
-        // }
-
-        // mainSearchInput.textContent = '';
-        startingAddressEl.value = '';
-        console.log(startingAddressEl);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+         // Validitation of the address step? Use console to tell user it didn't work
+    } else {
+        console.log("Geolocation is not supported by this browser.");
     }
-    else {
-        console.log("there is an issue");
+    function getPosition(position) {
+        startLat = position.coords.latitude;
+        startLon = position.coords.longitude;
+        console.log(startLat + ',' + startLon);
+        getEventInfo(startLat, startLon);
     }
+    
+
+    // MONDAY LOCAL STORAGE STARTING CODE
+    // let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
+    // if (!startButton.includes(startAddress)) {
+    //     startButton.push(startAddress);
+    //     localStorage.setItem("startingAddress", JSON.stringify(startButton));
+      
+    // }
+
+//    mainSearchInput.textContent = '';
+//    startingAddressEl.value = '';
+//    console.log(startingAddressEl);
+
+  
 }
 
-
-    // Start function - onclick button to ssave address and send to TM
-    // Validitation of the address step? Use modal to tell user it didn't work
-    // Add suggestion of how to format address in the search bar
+    
+// Add suggestion of how to format address in the search bar
+    
+    
     // Start with an actual full search (Button)?
     // Console log 
 
@@ -73,7 +82,8 @@ var enterAddress = function(){
 // Pushes to 'Search Page'
 
 
-var getEventInfo = function (startingAddress) {
+var getEventInfo = function (startLat, startLon) {
+var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
     fetch(userSearchLatLonURL)
     .then(function (data) {
@@ -91,6 +101,8 @@ var getEventInfo = function (startingAddress) {
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
 
             // console.log(eventsArray);
+
+            
     
             eventListHTML = `<div> <br> <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
             <ul id="events"> Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
@@ -98,7 +110,7 @@ var getEventInfo = function (startingAddress) {
             <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
             <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
             </div> 
-            <button class="flex items-center justify-center px-4 border-l" id=eventAddress>
+            <button class="flex items-center justify-center px-4 border-l" id=eventAddress> Get Directions 
                         <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
                             <path
@@ -107,6 +119,8 @@ var getEventInfo = function (startingAddress) {
                     </button>`;
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
+
+            // MONDAY save lat and lon in local storage of events it is pulling
         } 
 
         // POTENTIALLY EXTRA TASK If user wants more events, link to the actual TM page AND BING maps
@@ -121,11 +135,10 @@ var getEventInfo = function (startingAddress) {
 
 }
 
-
-
-
-// User chooses an event using the button and event address is sent to Bing
+// User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
+// Map is created 
     // Use modal?
+    
     // POTENTIALLY EXTRA TASK - add functionality of map (share it with user's phone or something)
 
 
