@@ -61,23 +61,23 @@
     </nav>
 
     <!-- main body -->
-    <div class="hero place-content-center pt-40 pb-40 main-body backdrop-opacity-10">
+    <div class="place-content-center pt-40 pb-40">
 
         <!-- right content column begin -->
         <!-- order-2 border-green-500 -->
-        <div class=" w-screen justify-center search-container py-10 gap-10">
+        <div class=" flex flex-col flex-wrap w-screen justify-center search-container py-10 gap-5">
             <div class="flex items-center text-white justify-center">
-                <h2 class="text-4xl" id="search-bar">Let us help you find your dream concert! </h2>
+                <h2 class="text-4xl" id="search-bar">Let us help you find your dream Event!</h2>
             </div>
 
             <div class="flex items-center text-white justify-center">
-                <p>Enter your address below to find events near you.</p></br>
+                <p>Enter your search radius below to find events near you.</p>
             </div>
 
             <!-- search container -->
             <div class="flex items-center justify-center py-10">
                 <div class="flex border-2 rounded">
-                    <input type="text" class="px-4 py-2 w-80" placeholder="Enter Your Address">
+                    <input type="text" class="px-4 py-2 w-80" placeholder="Enter the Radius (ex. 10 mi, 25 mi, etc.)">
                     <button onclick="enterAddress()" class="flex items-center justify-center px-4 border-l">
                         <svg class="w-6 h-6 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
@@ -91,19 +91,26 @@
         </div>
 
         <!-- Event details display -->
-        <div class=" border-2 border-purple-500 fact-container py-5 ">
-            <div class="fact-1 text-white">
-                <h2 class="fact-heading" id="eventList"></h2>
-                <!-- <p class="fact-1-content">Duis lobortis, dolor eget faucibus aliquam, magna nunc molestie nibh, id suscipit dui mi vitae lorem. Nunc non erat consectetur, elementum turpis id, pretium leo. Praesent eget eros et augue ullamcorper luctus vitae ut nunc. Cras et neque sed sem condimentum blandit. Phasellus mattis sed turpis sit amet porttitor. </p> -->
-                <!-- <h2 class="fact-heading">Fact 2</h2> -->
-                <!-- <p class="fact-2-content">Ut at consectetur nibh. Pellentesque quis odio nec urna pellentesque suscipit. Proin lorem magna, dapibus ut nibh in, euismod vestibulum enim.</p> -->
-            </div>
+        <div class="flex flex-col gap-5 py-5 px-5" id="eventList">
+            <!-- <div class="flex justify-between items-center bg-white/75 text-black py-5 px-14">
+                <div> 
+                    <ul id="events"> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul> 
+                    <ul id="events"> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+                    <ul id="events"> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+                    <ul id="events"> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+                    <ul id="events"> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+                </div> 
+
+                <button type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+                id=eventAddress> Get Directions 
+                </button>
+            </div> -->
         </div>
         <!-- right content column end -->
     </div>
 
-     <!--"Fixed Top-0" NavBar - nav bar will remain on top during scrolling -->
-    <footer class="fixed bottom-0 z-30 w-full columns-1 flex items-center justify-center  space-x-11 bg-white text-black fact-container" id="contact-us">
+     <!--"fixed bottom-0 z-30" Footer - footer will remain on top during scrolling -->
+    <footer class="w-full columns-1 flex items-center justify-center  space-x-11 bg-white text-black fact-container" id="contact-us">
         <div class="flex text-center py-1 gap-10 contact">
             <p class="py-1 self-center">Contact Us</p>
             <!-- <a href="mailto:webmaster@example.com">Email</a><br> -->
@@ -117,7 +124,8 @@
         </div>
     </footer>
     <script src="navbarmenu.js"></script>
-    <script src="casey.js"></script>
+    <script src="Anastasiya.js"></script>
+
 </body>
 
 </html>
