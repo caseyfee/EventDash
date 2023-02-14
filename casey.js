@@ -1,3 +1,4 @@
+
 var bingAPI = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi";
 
 // Variables for TicketMaster
@@ -93,13 +94,11 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 
         for (var i = 0; i < 10; i++) {
             // eventsArray.push(eventsArray[i]);
-            // console.log(eventResponse._embedded.events[i].name);
-            // console.log(eventResponse._embedded.events[i].dates.start.localDate);
-            // console.log(eventResponse._embedded.events[i].dates.start.localTime);
-            // console.log(eventResponse._embedded.events[i]._embedded.venues[0].name);
-            // console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
-            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location[0].longitude)
-            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location[0].latitude)
+            console.log(eventResponse._embedded.events[i].name);
+            console.log(eventResponse._embedded.events[i].dates.start.localDate);
+            console.log(eventResponse._embedded.events[i].dates.start.localTime);
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].name);
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
 
             // console.log(eventsArray);
 
