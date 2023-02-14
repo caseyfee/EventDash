@@ -2,7 +2,7 @@
 
 ## Description
 
-🎵 EventDash is a web search page that will help users discover nearby local concerts based on their address input. 
+🎵 EventDash is a web search page that will help users discover nearby local concerts based on their radius (miles) input.
 
 # Application Features
 For this application, we included the following APIs:
@@ -14,37 +14,34 @@ For this application, we included the following APIs:
 
 # How to Use EventDash
 
-Here are  step-by-step instructions for using this application.
-(Insert examples/screenshots for each step.)
+Here are step-by-step instructions for using this application.
 
 ## How to Search for Events
-1. Enter a [name] in the text box and click search.
+### STEP 1
+Select a radius.
 
-![Step 1 screenshot](link)
+![Alt text](Assets/step-1.jpg)
 
-2. step 2
+### STEP 2
+(View the event details below.)
 
-![Step 2 screenshot](link)
+![Alt text](Assets/step-1.jpg)
 
-3. Step 3
+### STEP 3
+(Click the event of your choice to select it.)
 
-![Step 3 screenshot](link)
+![Alt text](Assets/step-1.jpg)
 
-## Using the Map Modal [to be determined]
+## Using the Modals [to be determined]
 
-(Insert description of the map modal here.)
+(Insert description of modals here.)
 
 
-![map modal screen shot](link)
-
-# Troubleshooting
-
-Contact us for technical assistance by emailing us at webmaster@example.com.
-
+![Alt text](Assets/step-1.jpg)
 
 # Acceptance Criteria
 
-* View the [Google Slides Presentation](https://docs.google.com/presentation/d/1ql_dwRZoohJV3LKtCjuISpeVdkXhfl-6_2kuPeaoEF8/edit#slide=id.g29f43f0a72_0_10). ✨
+## Project Scope
 
 * Must use at least two server-side APIs
 * Must use a CSS framework other than Bootstrap
@@ -53,10 +50,17 @@ Contact us for technical assistance by emailing us at webmaster@example.com.
 * Must meet good quality coding standards (indentation, scoping, naming, etc.)
 * Must NOT use alerts, confirms, or prompts (look into modals).
 * Must be deployed to GitHub Pages
-* Must be interactive (i.e. accept and respond to user input.)
+* Must be interactive (i.e., accept and respond to user input.)
 
-## When/Then statements
+## When/Then
 * When a user enters their address in the search bar, the application will populate nearby events in relation to their location.
+
+## Google Slides Presentation
+
+* View the [Google Slides Presentation](https://docs.google.com/presentation/d/1ql_dwRZoohJV3LKtCjuISpeVdkXhfl-6_2kuPeaoEF8/edit#slide=id.g29f43f0a72_0_10) here. ✨
+
+![Google Slides Presentation](Assets/step-1.jpg)
+
 
 
 # Credits 
@@ -68,3 +72,6 @@ Contact us for technical assistance by emailing us at webmaster@example.com.
 |Christy Hanson |[ChristyGHanson](https://github.com/ChristyGHanson) |
 |Terri Mack |[terrinmack](https://github.com/terrinmack)|
 |Anastasiya Rylova|[anryl050](https://github.com/anryl050)|
+
+# Technical Assistance
+You may contact any member of our team on GitHub for technical support. The repo itself is hosted on [caseyfee](https://github.com/caseyfee)'s GitHub account.
