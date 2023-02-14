@@ -1,3 +1,4 @@
+
 var bingAPI = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi";
 
 // Variables for TicketMaster
@@ -43,18 +44,16 @@ var enterAddress = async function(){
         startLat = position.coords.latitude;
         startLon = position.coords.longitude;
         console.log(startLat + ',' + startLon);
+        // Save lat and lon in local storage of events it is pulling
+        let startCoordinates = JSON.parse(localStorage.getItem("startLocation")) || [];
+            if(!startCoordinates.includes(startLat, startLon)) {
+                startCoordinates.push(startLat, startLon);
+                localStorage.setItem("startLocation", JSON.stringify(startCoordinates));
+            }
+ 
+
         getEventInfo(startLat, startLon);
     }
-    
-
-    // MONDAY LOCAL STORAGE STARTING CODE
-    // let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
-    // if (!startButton.includes(startAddress)) {
-    //     startButton.push(startAddress);
-    //     localStorage.setItem("startingAddress", JSON.stringify(startButton));
-      
-    // }
-
 //    mainSearchInput.textContent = '';
 //    startingAddressEl.value = '';
 //    console.log(startingAddressEl);
@@ -62,24 +61,7 @@ var enterAddress = async function(){
   
 }
 
-    
-// Add suggestion of how to format address in the search bar
-    
-    
-    // Start with an actual full search (Button)?
-    // Console log 
-
-
-    // Address or coordinates are saved into local storage and send to Bing
-
-    // Clear History Button
-
-
-// Start address is sent to TM to find events within 50 miles (either in address or converted to lat/long)
-
-// Create a function to pull search results off of homepage
-// Pushes to 'Search Page'
-
+    // Clear History Button?
 
 var getEventInfo = function (startLat, startLon) {
 var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
@@ -89,7 +71,8 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
     data.json().then(function (eventResponse) {
         console.log(eventResponse);
 
-        // var eventsArray = [];
+        var eventsArray = [];
+        eventsArray = eventResponse;
 
         for (var i = 0; i < 10; i++) {
             // eventsArray.push(eventsArray[i]);
@@ -98,32 +81,33 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
             console.log(eventResponse._embedded.events[i].dates.start.localTime);
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].name);
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
-
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location.longitude);
+            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location.latitude);
             // console.log(eventsArray);
 
-            
+            var eventid = `${i}`
     
             eventListHTML = `<div> <br> <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
-            <ul id="events"> Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-            <ul id="events"> Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-            <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-            <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+            <ul > Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+            <ul > Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+            <ul > Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+            <ul > Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
             </div> 
-            <button class="flex items-center justify-center px-4 border-l" id=eventAddress> Get Directions 
-                        <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-                        </svg>
-                    </button>`;
+            <button onclick = "showID(this.id)" id=${eventid} class="flex items-center justify-center px-4 border-l eventButton" > Get Directions <i class="fa-solid fa-magnifying-glass-location"></i></button>`;
+
+                    // need to add after <button onclick = "getEventLocation()"
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
+            // getEventLocation(eventResponse);
 
-            
-
-            // MONDAY save lat and lon in local storage of events it is pulling
+            // User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
+            showID = function(obj) {
+                console.log(obj)
+                console.log(eventResponse._embedded.events[obj]._embedded.venues[0].location.longitude);
+                        console.log(eventResponse._embedded.events[obj]._embedded.venues[0].location.latitude);
+            }
+               
         } 
-
         // POTENTIALLY EXTRA TASK If user wants more events, link to the actual TM page AND BING maps
        
         // POTENTIALLY EXTRA TASK Save search results in local storage so it is not lost during refresh
@@ -132,13 +116,22 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 
     }) 
 }) 
-
-
 }
 
-// User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
+
+
+    // else {
+    //     console.log("help")
+    // }
+
+// }
+
+    
+
+
+
 // Map is created 
-    // Use modal?
+    
     
     // POTENTIALLY EXTRA TASK - add functionality of map (share it with user's phone or something)
 
@@ -161,13 +154,5 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
     //     // NEEDS updating if we want to include buttons
     //     $('#previousCities').html(previousSearchesHTML);
     // }
+
 // Bing returns a map with starting and ending address
-
-
-
-fetch('http://dev.virtualearth.net/REST/V1/Routes?wp.0=37.779160067439079,-122.42004945874214&wp.1=32.715685218572617,-117.16172486543655&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi')
-.then(function (data) {
-    data.json().then(function (eventResponse) {
-        console.log(eventResponse);
-    })
-})
