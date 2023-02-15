@@ -71,3 +71,20 @@ body{
   border-radius: 10px;
   border-color: white;
 }
+
+
+/* added for centering */
+#map-container {
+  display: inline-block;
+  column-count: 2;
+  padding-left: 500px;
+  gap: none;
+}
+
+#printoutPanel {
+  background: white;
+  opacity: 75%;
+  overflow-y: auto;
+  max-height: 400px; 
+  max-width: 370px;
+}
