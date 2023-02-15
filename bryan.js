@@ -182,4 +182,4 @@ Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
   directionsManager.calculateDirections();
 });
 }
-  
+  /* tiny change */
