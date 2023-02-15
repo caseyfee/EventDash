@@ -10,8 +10,6 @@ var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
 
 // ticket example URL searches with our API key
 // Search for music events in the Los Angeles area https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
-// TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
-
 
 var startingAddress = "";
 // populated from bing/IP address
@@ -20,14 +18,10 @@ var startLon = "";
 var eventListHTML = ``;
 var eventLat = "";
 var eventLon = "";
-var radius = "50"; 
+var radius = ""; 
 
 
 var startingAddressEl = document.getElementById("search-bar");
-
-// var startAddress = "";
-
-
 
 // User inputs starting address - 
 // Start function - onclick button to ssave address and send to TM
@@ -44,26 +38,22 @@ var enterAddress = async function(){
         startLat = position.coords.latitude;
         startLon = position.coords.longitude;
         console.log(startLat + ',' + startLon);
-        // Save lat and lon in local storage of events it is pulling
-        let startCoordinates = JSON.parse(localStorage.getItem("startLocation")) || [];
-            if(!startCoordinates.includes(startLat, startLon)) {
-                startCoordinates.push(startLat, startLon);
-                localStorage.setItem("startLocation", JSON.stringify(startCoordinates));
-            }
- 
 
+        // Store Coordinates in local Storage
+        localStorage.setItem('startLat', startLat);
+        localStorage.setItem('startLon', startLon);
+        console.log(startLat + ',' + startLon);
+        
         getEventInfo(startLat, startLon);
     }
-//    mainSearchInput.textContent = '';
-//    startingAddressEl.value = '';
-//    console.log(startingAddressEl);
-
-  
 }
 
-    // Clear History Button?
-
+// Start address is sent to TM to find events within 50 miles (either in address or converted to lat/long)
 var getEventInfo = function (startLat, startLon) {
+
+    var userRadiusEl = document.querySelector("#radiusInput");
+    radius = userRadiusEl.value;
+   
 var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
     fetch(userSearchLatLonURL)
@@ -75,78 +65,94 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
         eventsArray = eventResponse;
 
         for (var i = 0; i < 10; i++) {
-            // eventsArray.push(eventsArray[i]);
+            
             console.log(eventResponse._embedded.events[i].name);
             console.log(eventResponse._embedded.events[i].dates.start.localDate);
             console.log(eventResponse._embedded.events[i].dates.start.localTime);
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].name);
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
-            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location.longitude);
-            console.log(eventResponse._embedded.events[i]._embedded.venues[0].location.latitude);
-            // console.log(eventsArray);
 
             var eventid = `${i}`
-    
-            eventListHTML = `<div> <br> <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
-            <ul > Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-            <ul > Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-            <ul > Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-            <ul > Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
-            </div> 
-            <button onclick = "showID(this.id)" id=${eventid} class="flex items-center justify-center px-4 border-l eventButton" > Get Directions <i class="fa-solid fa-magnifying-glass-location"></i></button>`;
-
-                    // need to add after <button onclick = "getEventLocation()"
-
+                
+            eventListHTML = `<div class="flex justify-between items-center rounded bg-white/75 text-black py-5 px-14">
+            <div>
+                <ul> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul>
+                <ul> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+                <ul> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+                <ul> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+               
+            </div>
+            <a  target="_blank" ><button onclick = "showID(this.id)" id=${eventid} type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            > Get Directions
+            </button></a>
+        </div>`;   
+        
             document.querySelector('#eventList').innerHTML+= eventListHTML;
-            // getEventLocation(eventResponse);
 
-            // User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
-            showID = function(obj) {
+             // User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
+             showID = function(obj) {
                 console.log(obj)
                 console.log(eventResponse._embedded.events[obj]._embedded.venues[0].location.longitude);
                         console.log(eventResponse._embedded.events[obj]._embedded.venues[0].location.latitude);
-            }
-               
-        } 
-        // POTENTIALLY EXTRA TASK If user wants more events, link to the actual TM page AND BING maps
-       
-        // POTENTIALLY EXTRA TASK Save search results in local storage so it is not lost during refresh
+                
+                eventLat = eventResponse._embedded.events[obj]._embedded.venues[0].location.latitude;
+                eventLon = eventResponse._embedded.events[obj]._embedded.venues[0].location.longitude;
 
-        // Link remove history button after events are listed (id hide)
+                 // BRYAN Store Coordinates in local Storage
+                    localStorage.setItem('eventLat', eventLat);
+                    localStorage.setItem('eventLon', eventLon);
+                    // console.log(eventLat + ',' + eventLon);
+
+                
+                GetMap(eventLat, eventLon);
+            }
+
+
+        } 
+
+                // MAP CREATION 
+                // Add Event Listener for getMap
+                            
+                type='text/javascript'
+                src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi' 
+
+                type='text/javascript'
+                function GetMap() {
+                    var map = new Microsoft.Maps.Map('#myMap');
+
+                //Add your post map load code here.
+                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(47.606209, -122.332071),
+                zoom: 12
+                });
+                Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+                var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+
+                // Set Route Mode to driving
+                directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+
+                var mapStartLat = localStorage.getItem('startLat');
+                var mapStartLon = localStorage.getItem('startLon');
+                var mapEventLat = localStorage.getItem('eventLat');
+                var mapEventLon = localStorage.getItem('eventLon');
+
+                var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(mapStartLat, mapStartLon) });
+                var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(mapEventLat, mapEventLon ) });
+                directionsManager.addWaypoint(waypoint1);
+                directionsManager.addWaypoint(waypoint2);
+                // Set the element in which the itinerary will be rendered
+                directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+                directionsManager.calculateDirections();
+                });
+                }
+
+                // var showMap = document.querySelector('.map-container');
+                // showMap.classList.remove('.hide-div')
+                // showMap.classList.add('.show')
 
     }) 
 }) 
 }
 
-// }
 
-    
-
-
-
-// Map is created 
-    
-    
-    // POTENTIALLY EXTRA TASK - add functionality of map (share it with user's phone or something)
-
-
-// POTENTIAL LOCAL STORAGE RECALL - FROM MY WEATHER APP SO IT WILL CREATE BUTTONS FOR OLD SEARCHES
-    // function displayHistory() {
-    //     var previousSearchesHTML = ``;
-    
-    //     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    
-    //     for (var i = 0; i < searchHistory.length; i++) {
-    //         const city = searchHistory[i];
-    //         previousSearchesHTML += `
-    //         <a type="button" onclick="getCityInfo('${city}')">
-    //             <span class="input-group-text border-0 fw-bold" >
-    //                 ${city}
-    //             </span>
-    //         </a>`
-    //     }
-    //     // NEEDS updating if we want to include buttons
-    //     $('#previousCities').html(previousSearchesHTML);
-    // }
-
-// Bing returns a map with starting and ending address
