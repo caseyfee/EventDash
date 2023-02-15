@@ -64,40 +64,40 @@ var startingAddressEl = document.getElementById("search-bar");
     } */
 
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getPosition);
-        // Validitation of the address step? Use console to tell user it didn't work
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-    }
-    function getPosition(position) {
-        var startLat = position.coords.latitude;
-        var startLon = position.coords.longitude;
-        // Store Coordinates in local Storage
-        localStorage.setItem('startLat', startLat);
-        localStorage.setItem('startLon', startLon);
-        console.log(startLat + ',' + startLon);
-        getEventInfo(startLat, startLon);
-    }
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition);
+    // Validitation of the address step? Use console to tell user it didn't work
+} else {
+    console.log("Geolocation is not supported by this browser.");
+}
+function getPosition(position) {
+    var startLat = position.coords.latitude;
+    var startLon = position.coords.longitude;
+    // Store Coordinates in local Storage
+    localStorage.setItem('startLat', startLat);
+    localStorage.setItem('startLon', startLon);
+    console.log(startLat + ',' + startLon);
+    getEventInfo(startLat, startLon);
+}
 
-   /*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
-    let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
-    if (!startButton.includes(startAddress)) {
-        startButton.push(startAddress);
-        localStorage.setItem("startingAddress", JSON.stringify(startButton));
+/*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
+ let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
+ if (!startButton.includes(startAddress)) {
+     startButton.push(startAddress);
+     localStorage.setItem("startingAddress", JSON.stringify(startButton));
 
 
-   /*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
-    let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
-    if (!startButton.includes(startAddress)) {
-        startButton.push(startAddress);
-        localStorage.setItem("startingAddress", JSON.stringify(startButton));
+/*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
+ let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
+ if (!startButton.includes(startAddress)) {
+     startButton.push(startAddress);
+     localStorage.setItem("startingAddress", JSON.stringify(startButton));
 
-    } */
+ } */
 
-    //    mainSearchInput.textContent = '';
-    //    startingAddressEl.value = '';
-    //    console.log(startingAddressEl);
+//    mainSearchInput.textContent = '';
+//    startingAddressEl.value = '';
+//    console.log(startingAddressEl);
 
 
 // }
@@ -127,15 +127,15 @@ var startingAddressEl = document.getElementById("search-bar");
 // var getEventInfo = function (startLat, startLon) {
 
 //     var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
-  
+
 //     fetch(userSearchLatLonURL)
 //       .then(function (data) {
 //         data.json().then(function (eventResponse) {
 //           console.log(eventResponse);
-  
+
 //           for (var i = 0; i < 10; i++) {
 //             // create eventListHTML
-  
+
 //             eventListHTML += `<div> 
 //                                 <br> 
 //                                 <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
@@ -150,9 +150,9 @@ var startingAddressEl = document.getElementById("search-bar");
 //                                   </svg>
 //                                 </button>
 //                               </div>`;
-  
+
 //             document.querySelector('#eventList').innerHTML += eventListHTML;
-  
+
 //             // add event listener to button for each event
 //             document.querySelectorAll('#eventAddress').forEach(function(button) {
 //               button.addEventListener('click', function(event) {
@@ -167,63 +167,62 @@ var startingAddressEl = document.getElementById("search-bar");
 
 //   } 
 
-  //Function to get directions using bing maps API
-  /* function getDirections(start, end) {
+//Function to get directions using bing maps API
+/* function getDirections(start, end) {
 
-    const startCoords = start.latitude + "," + start.longitude;
-    const endCoords = end.latitude + "," + end.longitude;
-  
-    const apiKey = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi";
-    const apiUrl = `https://dev.virtualearth.net/REST/v1/Routes/Driving?wp.0=${startCoords}&wp.1=${endCoords}&avoid=minimizeTolls&key=${apiKey}`;
-  
-    fetch(apiUrl)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const itineraryItems = data.resourceSets[0].resources[0].routeLegs[0].itineraryItems;
-        let directions = "";
-  
-        itineraryItems.forEach((item) => {
-          if (item.instruction) {
-            directions += `<div>${item.instruction.text}</div>`;
-          }
-        });
-  
-        document.getElementById("directions").innerHTML = directions;
-      })
-      .catch((error) => {
-        console.error(error);
+  const startCoords = start.latitude + "," + start.longitude;
+  const endCoords = end.latitude + "," + end.longitude;
+ 
+  const apiKey = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi";
+  const apiUrl = `https://dev.virtualearth.net/REST/v1/Routes/Driving?wp.0=${startCoords}&wp.1=${endCoords}&avoid=minimizeTolls&key=${apiKey}`;
+ 
+  fetch(apiUrl)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const itineraryItems = data.resourceSets[0].resources[0].routeLegs[0].itineraryItems;
+      let directions = "";
+ 
+      itineraryItems.forEach((item) => {
+        if (item.instruction) {
+          directions += `<div>${item.instruction.text}</div>`;
+        }
       });
+ 
+      document.getElementById("directions").innerHTML = directions;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
-  } */
-  
-type='text/javascript'
-src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi' 
+} */
 
-type='text/javascript'
-function GetMap()
-{
-var map = new Microsoft.Maps.Map('#myMap');
+type = 'text/javascript'
+src = 'http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi'
 
-//Add your post map load code here.
-var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-  /* No need to set credentials if already passed in URL */
-  center: new Microsoft.Maps.Location(47.606209, -122.332071),
-  zoom: 12
-});
-Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-  var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
-  // Set Route Mode to driving
-  directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
-  var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(startLat, startLon) });
-  var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(eventLat,eventLon ) });
-  directionsManager.addWaypoint(waypoint1);
-  directionsManager.addWaypoint(waypoint2);
-  // Set the element in which the itinerary will be rendered
-  directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
-  directionsManager.calculateDirections();
-});
+type = 'text/javascript'
+function GetMap() {
+    var map = new Microsoft.Maps.Map('#myMap');
+
+    //Add your post map load code here.
+    var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        /* No need to set credentials if already passed in URL */
+        center: new Microsoft.Maps.Location(47.606209, -122.332071),
+        zoom: 12
+    });
+    Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+        var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+        // Set Route Mode to driving
+        directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+        var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(47.5642955, -122.2748972) });
+        var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(47.6221261, -122.35401604) });
+        directionsManager.addWaypoint(waypoint1);
+        directionsManager.addWaypoint(waypoint2);
+        // Set the element in which the itinerary will be rendered
+        directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+        directionsManager.calculateDirections();
+    });
 }
   /* tiny change */
 
