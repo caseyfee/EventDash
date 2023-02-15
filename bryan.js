@@ -216,8 +216,8 @@ Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
   var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
   // Set Route Mode to driving
   directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
-  var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(47.67683029174805, -122.1099624633789) });
-  var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(46.563328,-120.5829632 ) });
+  var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(startLat, startLon) });
+  var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(eventLat,eventLon ) });
   directionsManager.addWaypoint(waypoint1);
   directionsManager.addWaypoint(waypoint2);
   // Set the element in which the itinerary will be rendered
