@@ -74,7 +74,7 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 
             var eventid = `${i}`
                 
-            eventListHTML = `<div class="flex justify-between items-center bg-white/75 text-black py-5 px-14">
+            eventListHTML = `<div class="flex justify-between items-center rounded bg-white/75 text-black py-5 px-14">
             <div>
                 <ul> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul>
                 <ul> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>

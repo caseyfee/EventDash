@@ -6,19 +6,12 @@
     padding: 0;
 }
 
-/* .navbar-right a:hover {
-    box-shadow: inset 0px 0px 15px var(--back-color), 0 0 15px var(--back-color);
-} */
+/* Styling of the Fond within the page using Google Fonts */
+body{
+  font-family: 'Lora', serif;
+}
 
-/* .menubtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  } */
-  
+/* Styling of the Nav Bar */
   .menubtn:hover, .menubtn:focus {
     background-color: #ddd;
   }
@@ -51,6 +44,7 @@
   
   .show {display: block;}
 
+  /* Styling of the Hero Image */
   .hero {
     height: auto;
     width: 100%;
@@ -61,13 +55,19 @@
     position: relative;
 }
 
-/* .contact {
-    flex-direction: column; 
-    text-align: center;
-    color: aliceblue;
-
-} */
-
+/* Styling of the Hide class that contains the Map with Directions */
 .hide{
-    display:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+}
+
+.hide-div{
+  display:none;
+  width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  border-color: white;
 }
