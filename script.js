@@ -20,7 +20,7 @@ var startLon = "";
 var eventListHTML = ``;
 var eventLat = "";
 var eventLon = "";
-var radius = "10"; 
+var radius = ""; 
 
 
 var startingAddressEl = document.getElementById("search-bar");
@@ -59,6 +59,12 @@ var enterAddress = async function(){
 
 // Start address is sent to TM to find events within 50 miles (either in address or converted to lat/long)
 var getEventInfo = function (startLat, startLon) {
+
+    var userRadiusEl = document.getElementById("#radiusInput");
+    var radius = userRadiusEl.value;
+    typeof(radius);
+    console.log(radius);
+
 var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
     fetch(userSearchLatLonURL)
@@ -81,11 +87,11 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 
             eventListHTML = `<div class="flex justify-between items-center bg-white/75 text-black py-5 px-14">
             <div>
-                <ul id="events"> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul>
-                <ul id="events"> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-                <ul id="events"> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-                <ul id="events"> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-                <ul id="events"> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+                <ul> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul>
+                <ul> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+                <ul> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+                <ul> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+                <ul> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
             </div>
             <a href="index2.html" target="_blank" id="myMap"><button type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             id=eventAddress> Get Directions
@@ -109,9 +115,6 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 
             type='text/javascript'
             src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi' 
-
-
-
         } 
 
                 // MAP CREATION 
