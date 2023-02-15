@@ -95,41 +95,40 @@
         </div>
 
         <!-- Event details display -->
+        <!-- style="position:relative ;width:600px;height:400px;" -->
         <div class="flex flex-col gap-5 py-5 px-5" id="eventList">
-            <div id="myMap" style="position:relative;width:600px;height:400px;"> </div>
+            <div id="myMap" style="width:600px;height:400px;" > </div>
+            <!-- <div id="printoutPanel"></div> -->
             
-            <!-- <div class="flex justify-between items-center bg-white/75 text-black py-5 px-14">
-                <div> 
-                    <ul id="events"> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul> 
-                    <ul id="events"> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-                    <ul id="events"> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-                    <ul id="events"> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-                    <ul id="events"> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
-                </div> 
-
-                <button  type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
-                id=eventAddress> Get Directions 
-                <a  href="index2.html" target="_blank" id="myMap" class="px-4 py-2 font-semibold text-black"></a>
-                </button>
-            </div> -->
         </div>
         <!-- right content column end -->
     </div>
 
      <!--"fixed bottom-0 z-30" Footer - footer will remain on top during scrolling -->
-    <footer class="w-full columns-1 flex items-center justify-center  space-x-11 bg-white text-black fact-container" id="contact-us">
-        <div class="flex text-center py-1 gap-10 contact">
-            <p class="py-1 self-center">Contact Us</p>
-            <!-- <a href="mailto:webmaster@example.com">Email</a><br> -->
-            <p class="py-1 self-center">Social Media</p>
-            <!-- Social media icons: GitHub -->
-            <i class="py-1 self-center fa-brands fa-github-alt"></i>
-        </div>
-        <div class="py-1 flex self-center">
-            <p>Copyright © 2023 EventDash Inc.</p>
-            <!-- Font Awesome - Shoe prints -->
-        </div>
-    </footer>
+     <footer
+     class="w-full columns-1 flex items-center justify-center space-x-11 bg-white text-black fact-container"
+     id="contact-us">
+     <div class="flex text-center py-1 gap-10 contact">
+         <p class="py-1 self-center"></p>
+         <!-- Font Awesome icons: Email, FB, MS, GitHub, Font Awesome -->
+         <!-- Fictional email address -->
+         <a href="mailto:web-master@webmail123.com"><i class="fa-regular fa-envelope"></i></a>
+         <!-- Enabled hyperlinked icons to open in a new tab. -->
+         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
+                 class="fa-brands fa-facebook"></i></a>
+         <a href="https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api" target="_blank"
+             rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i></a>
+         <a href="https://github.com/caseyfee/FetchYaPet" target="_blank" rel="noopener noreferrer"><i
+                 class="py-1 self-center fa-brands fa-github-alt"></i></a>
+         <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer"><i
+                 class="fa-brands fa-font-awesome"></i></a>
+     </div>
+     <div class="py-1 flex self-center gap-3">
+         <p>Copyright © 2023 EventDash Inc.</p>
+         <!-- Font Awesome - Shoe prints -->
+         <i class="fa-solid fa-shoe-prints"></i>
+     </div>
+ </footer>
     <script src="navbarmenu.js"></script>
     <script src="script.js"></script>
 
