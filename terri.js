@@ -118,12 +118,6 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 }) 
 }
 
-
-
-    // else {
-    //     console.log("help")
-    // }
-
 // }
 
     
