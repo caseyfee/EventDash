@@ -44,22 +44,29 @@ var enterAddress = async function(){
         startLat = position.coords.latitude;
         startLon = position.coords.longitude;
         console.log(startLat + ',' + startLon);
-        // Save lat and lon in local storage of events it is pulling
-        let startCoordinates = JSON.parse(localStorage.getItem("startLocation")) || [];
-            if(!startCoordinates.includes(startLat, startLon)) {
-                startCoordinates.push(startLat, startLon);
-                localStorage.setItem("startLocation", JSON.stringify(startCoordinates));
-            }
- 
+            // BRYAN Store Coordinates in local Storage
+            localStorage.setItem('startLat', startLat);
+            localStorage.setItem('startLon', startLon);
+            console.log(startLat + ',' + startLon);
+            getEventInfo(startLat, startLon);
+    }
 
-        getEventInfo(startLat, startLon);
+        // CASEY VERSION Save lat and lon in local storage of events it is pulling
+                // let startCoordinates = JSON.parse(localStorage.getItem("startLocation")) || [];
+                //     if(!startCoordinates.includes(startLat, startLon)) {
+                //         startCoordinates.push(startLat, startLon);
+                //         localStorage.setItem("startLocation", JSON.stringify(startCoordinates));
+                //     }
+        
+
+                // getEventInfo(startLat, startLon);
     }
 //    mainSearchInput.textContent = '';
 //    startingAddressEl.value = '';
 //    console.log(startingAddressEl);
 
   
-}
+// }
 
     // Clear History Button?
 

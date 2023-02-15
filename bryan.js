@@ -100,7 +100,7 @@ var startingAddressEl = document.getElementById("search-bar");
     //    console.log(startingAddressEl);
 
 
-}
+// }
 
 
 // Add suggestion of how to format address in the search bar
@@ -124,48 +124,48 @@ var startingAddressEl = document.getElementById("search-bar");
 // Pushes to 'Search Page'
 
 
-var getEventInfo = function (startLat, startLon) {
+// var getEventInfo = function (startLat, startLon) {
 
-    var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
+//     var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
   
-    fetch(userSearchLatLonURL)
-      .then(function (data) {
-        data.json().then(function (eventResponse) {
-          console.log(eventResponse);
+//     fetch(userSearchLatLonURL)
+//       .then(function (data) {
+//         data.json().then(function (eventResponse) {
+//           console.log(eventResponse);
   
-          for (var i = 0; i < 10; i++) {
-            // create eventListHTML
+//           for (var i = 0; i < 10; i++) {
+//             // create eventListHTML
   
-            eventListHTML += `<div> 
-                                <br> 
-                                <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
-                                <ul id="events"> Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
-                                <ul id="events"> Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
-                                <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-                                <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
-                                <button class="flex items-center justify-center px-4 border-l" id="eventAddress"> 
-                                  Get Directions 
-                                  <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-                                  </svg>
-                                </button>
-                              </div>`;
+//             eventListHTML += `<div> 
+//                                 <br> 
+//                                 <ul id="events"> Event Name: ${eventResponse._embedded.events[i].name} </ul> 
+//                                 <ul id="events"> Event Date: ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
+//                                 <ul id="events"> Event Time: ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
+//                                 <ul id="events"> Event Location: ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
+//                                 <ul id="events"> Event Address: ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+//                                 <button class="flex items-center justify-center px-4 border-l" id="eventAddress"> 
+//                                   Get Directions 
+//                                   <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+//                                     <path d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+//                                   </svg>
+//                                 </button>
+//                               </div>`;
   
-            document.querySelector('#eventList').innerHTML += eventListHTML;
+//             document.querySelector('#eventList').innerHTML += eventListHTML;
   
-            // add event listener to button for each event
-            document.querySelectorAll('#eventAddress').forEach(function(button) {
-              button.addEventListener('click', function(event) {
-                event.preventDefault();
-                var address = event.target.parentElement.querySelector('ul:nth-child(5)').textContent.split(': ')[1]; // get the event address from the clicked button's parent element
-                getDirections(address);
-              });
-            });
-          } 
-        }) 
-      }) 
+//             // add event listener to button for each event
+//             document.querySelectorAll('#eventAddress').forEach(function(button) {
+//               button.addEventListener('click', function(event) {
+//                 event.preventDefault();
+//                 var address = event.target.parentElement.querySelector('ul:nth-child(5)').textContent.split(': ')[1]; // get the event address from the clicked button's parent element
+//                 getDirections(address);
+//               });
+//             });
+//           } 
+//         }) 
+//       }) 
 
-  } */
+//   } 
 
   //Function to get directions using bing maps API
   /* function getDirections(start, end) {
