@@ -60,10 +60,9 @@ var enterAddress = async function(){
 // Start address is sent to TM to find events within 50 miles (either in address or converted to lat/long)
 var getEventInfo = function (startLat, startLon) {
 
-    var userRadiusEl = document.getElementById("#radiusInput");
-    var radius = userRadiusEl.value;
-    typeof(radius);
-    console.log(radius);
+    var userRadiusEl = document.querySelector("#radiusInput");
+    radius = userRadiusEl.value;
+   
 
 var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
@@ -93,10 +92,12 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 <ul> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
                 <ul> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
             </div>
-            <a href="index2.html" target="_blank" id="myMap"><button type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-            id=eventAddress> Get Directions
+            <a  target="_blank" ><button onclick = "showID(this.id)" id=${eventid} type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            > Get Directions
             </button></a>
-        </div>`;       
+        </div>`;   
+        
+        // removed from <a href="index2.html id="myMap""
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
 
@@ -108,8 +109,13 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 
                 eventLat = eventResponse._embedded.events[obj]._embedded.venues[0].location.latitude;
                 eventLon = eventResponse._embedded.events[obj]._embedded.venues[0].location.longitude;
-                console.log(eventLat);
-                console.log(eventLon);
+
+                 // BRYAN Store Coordinates in local Storage
+                    localStorage.setItem('eventLat', eventLat);
+                    localStorage.setItem('eventLon', eventLon);
+                    // console.log(eventLat + ',' + eventLon);
+
+                
                 GetMap(eventLat, eventLon);
             }
 
@@ -121,8 +127,11 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 // Add Event Listener for getMap
                             
                 type='text/javascript'
-                function GetMap()
-                {var map = new Microsoft.Maps.Map('#myMap');
+                src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi' 
+
+                type='text/javascript'
+                function GetMap() {
+                    var map = new Microsoft.Maps.Map('#myMap');
 
                 //Add your post map load code here.
                 var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
@@ -135,8 +144,14 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
 
                 // Set Route Mode to driving
                 directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
-                var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(startLat, startLon) });
-                var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(eventLat, eventLon ) });
+
+                var mapStartLat = localStorage.getItem('startLat');
+                var mapStartLon = localStorage.getItem('startLon');
+                var mapEventLat = localStorage.getItem('eventLat');
+                var mapEventLon = localStorage.getItem('eventLon');
+
+                var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(mapStartLat, mapStartLon) });
+                var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(mapEventLat, mapEventLon ) });
                 directionsManager.addWaypoint(waypoint1);
                 directionsManager.addWaypoint(waypoint2);
                 // Set the element in which the itinerary will be rendered
