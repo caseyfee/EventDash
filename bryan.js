@@ -3,27 +3,27 @@ var bingAPI = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi"
 
 // Variables for TicketMaster
 
-var ticketMasterAPI = "rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
+/* var ticketMasterAPI = "rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
 // ticketMaster Sercret:
 var ticketMasterSecret = "fp9pomMQ54vqq3rd";
 var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
-
+ */
 // ticket example URL searches with our API key
 // Search for music events in the Los Angeles area https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
 // TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
 
 
-var startingAddress = "";
+/* var startingAddress = "";
 // populated from bing/IP address
 var startLat = "";
 var startLon = "";
 var eventListHTML = ``;
 var eventLat = "";
 var eventLon = "";
-var radius = "20";
+var radius = "20"; */
 
 
-var startingAddressEl = document.getElementById("search-bar");
+/* var startingAddressEl = document.getElementById("search-bar"); */
 
 // var startAddress = "";
 
@@ -31,7 +31,7 @@ var startingAddressEl = document.getElementById("search-bar");
 
 // User inputs starting address - 
 // Start function - onclick button to ssave address and send to TM
-var enterAddress = async function () {
+/* var enterAddress = async function () {
     // startingAddress = startingAddressEl.value.trim();
 
     if (navigator.geolocation) {
@@ -48,7 +48,7 @@ var enterAddress = async function () {
         localStorage.setItem('startLon', startLon);
         console.log(startLat + ',' + startLon);
         getEventInfo(startLat, startLon);
-    }
+    } */
 
 
    /*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
@@ -64,7 +64,7 @@ var enterAddress = async function () {
     //    console.log(startingAddressEl);
 
 
-}
+/* } */
 
 
 // Add suggestion of how to format address in the search bar
@@ -85,7 +85,7 @@ var enterAddress = async function () {
 // Pushes to 'Search Page'
 
 
-var getEventInfo = function (startLat, startLon) {
+/* var getEventInfo = function (startLat, startLon) {
     var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
   
     fetch(userSearchLatLonURL)
@@ -124,10 +124,10 @@ var getEventInfo = function (startLat, startLon) {
           } 
         }) 
       }) 
-  }
+  } */
 
   //Function to get directions using bing maps API
-  function getDirections(start, end) {
+  /* function getDirections(start, end) {
     const startCoords = start.latitude + "," + start.longitude;
     const endCoords = end.latitude + "," + end.longitude;
   
@@ -153,7 +153,33 @@ var getEventInfo = function (startLat, startLon) {
       .catch((error) => {
         console.error(error);
       });
-  }
+  } */
   
+type='text/javascript'
+src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi' 
 
+type='text/javascript'
+function GetMap()
+{
+var map = new Microsoft.Maps.Map('#myMap');
+
+//Add your post map load code here.
+var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+  /* No need to set credentials if already passed in URL */
+  center: new Microsoft.Maps.Location(47.606209, -122.332071),
+  zoom: 12
+});
+Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+  var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+  // Set Route Mode to driving
+  directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+  var waypoint1 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(47.67683029174805, -122.1099624633789) });
+  var waypoint2 = new Microsoft.Maps.Directions.Waypoint({ address: '', location: new Microsoft.Maps.Location(46.563328,-120.5829632 ) });
+  directionsManager.addWaypoint(waypoint1);
+  directionsManager.addWaypoint(waypoint2);
+  // Set the element in which the itinerary will be rendered
+  directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
+  directionsManager.calculateDirections();
+});
+}
   
