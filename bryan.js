@@ -3,11 +3,12 @@ var bingAPI = "AjyUKW6RaQn4BQSYjKo0uvtRaDumIpGMR_5Eyex2C0lkul8hXnbD05vXh8TVePWi"
 
 // Variables for TicketMaster
 
-/* var ticketMasterAPI = "rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
+
+var ticketMasterAPI = "rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi";
 // ticketMaster Sercret:
 var ticketMasterSecret = "fp9pomMQ54vqq3rd";
 var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
- */
+
 // ticket example URL searches with our API key
 // Search for music events in the Los Angeles area https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
 // TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
@@ -22,17 +23,29 @@ var eventLat = "";
 var eventLon = "";
 var radius = "20"; */
 
+var startingAddress = "";
+// populated from bing/IP address
+var startLat = "";
+var startLon = "";
+var eventListHTML = ``;
+var eventLat = "";
+var eventLon = "";
+var radius = "20";
 
 /* var startingAddressEl = document.getElementById("search-bar"); */
 
-// var startAddress = "";
 
+var startingAddressEl = document.getElementById("search-bar");
+
+
+// var startAddress = "";
 
 
 // User inputs starting address - 
 // Start function - onclick button to ssave address and send to TM
 /* var enterAddress = async function () {
     // startingAddress = startingAddressEl.value.trim();
+
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getPosition);
@@ -51,6 +64,29 @@ var radius = "20"; */
     } */
 
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+        // Validitation of the address step? Use console to tell user it didn't work
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+    function getPosition(position) {
+        var startLat = position.coords.latitude;
+        var startLon = position.coords.longitude;
+        // Store Coordinates in local Storage
+        localStorage.setItem('startLat', startLat);
+        localStorage.setItem('startLon', startLon);
+        console.log(startLat + ',' + startLon);
+        getEventInfo(startLat, startLon);
+    }
+
+   /*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
+    let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
+    if (!startButton.includes(startAddress)) {
+        startButton.push(startAddress);
+        localStorage.setItem("startingAddress", JSON.stringify(startButton));
+
+
    /*  MONDAY LOCAL STORAGE STARTING CODE- Can Be Deleted
     let startButton = JSON.parse(localStorage.getItem("startingAddress")) || [];
     if (!startButton.includes(startAddress)) {
@@ -64,10 +100,13 @@ var radius = "20"; */
     //    console.log(startingAddressEl);
 
 
-/* } */
+}
 
 
 // Add suggestion of how to format address in the search bar
+
+// Add suggestion of how to format address in the search bar
+
 
 
 // Start with an actual full search (Button)?
@@ -85,7 +124,8 @@ var radius = "20"; */
 // Pushes to 'Search Page'
 
 
-/* var getEventInfo = function (startLat, startLon) {
+var getEventInfo = function (startLat, startLon) {
+
     var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
   
     fetch(userSearchLatLonURL)
@@ -124,10 +164,12 @@ var radius = "20"; */
           } 
         }) 
       }) 
+
   } */
 
   //Function to get directions using bing maps API
   /* function getDirections(start, end) {
+
     const startCoords = start.latitude + "," + start.longitude;
     const endCoords = end.latitude + "," + end.longitude;
   
@@ -153,6 +195,7 @@ var radius = "20"; */
       .catch((error) => {
         console.error(error);
       });
+
   } */
   
 type='text/javascript'
@@ -183,3 +226,4 @@ Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
 });
 }
   /* tiny change */
+
