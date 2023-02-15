@@ -10,8 +10,6 @@ var ticketMasterRootURL = "https://app.ticketmaster.com/discovery/v2/";
 
 // ticket example URL searches with our API key
 // Search for music events in the Los Angeles area https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi
-// TicketMaster docs: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/
-
 
 var startingAddress = "";
 // populated from bing/IP address
@@ -24,10 +22,6 @@ var radius = "";
 
 
 var startingAddressEl = document.getElementById("search-bar");
-
-// var startAddress = "";
-
-
 
 // User inputs starting address - 
 // Start function - onclick button to ssave address and send to TM
@@ -45,17 +39,14 @@ var enterAddress = async function(){
         startLon = position.coords.longitude;
         console.log(startLat + ',' + startLon);
 
-        // BRYAN Store Coordinates in local Storage
+        // Store Coordinates in local Storage
         localStorage.setItem('startLat', startLat);
         localStorage.setItem('startLon', startLon);
         console.log(startLat + ',' + startLon);
         
         getEventInfo(startLat, startLon);
     }
-  
 }
-
-    // Clear History Button
 
 // Start address is sent to TM to find events within 50 miles (either in address or converted to lat/long)
 var getEventInfo = function (startLat, startLon) {
@@ -63,7 +54,6 @@ var getEventInfo = function (startLat, startLon) {
     var userRadiusEl = document.querySelector("#radiusInput");
     radius = userRadiusEl.value;
    
-
 var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apikey=rGS5yWSlAMAia16Qiej1YcdN2Y1QXhNi&latlong=${startLat},${startLon}&radius=${radius}&locale=*`;
 
     fetch(userSearchLatLonURL)
@@ -90,15 +80,13 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 <ul> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
                 <ul> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
                 <ul> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
-                <ul> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
+               
             </div>
             <a  target="_blank" ><button onclick = "showID(this.id)" id=${eventid} type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             > Get Directions
             </button></a>
         </div>`;   
         
-        // removed from <a href="index2.html id="myMap""
-
             document.querySelector('#eventList').innerHTML+= eventListHTML;
 
              // User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
@@ -160,42 +148,8 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
                 });
                 }
 
-        // POTENTIALLY EXTRA TASK If user wants more events, link to the actual TM page AND BING maps
-       
-        // POTENTIALLY EXTRA TASK Save search results in local storage so it is not lost during refresh
-
-        // Link remove history button after events are listed (id hide)
-
     }) 
 }) 
-
-
 }
 
-// User chooses an event using the button - lat and long are pulled from local storage - and event address/lat long are sent to Bing
-// Map is created 
-    // Use modal?
-    
-    // POTENTIALLY EXTRA TASK - add functionality of map (share it with user's phone or something)
-
-
-// POTENTIAL LOCAL STORAGE RECALL - FROM MY WEATHER APP SO IT WILL CREATE BUTTONS FOR OLD SEARCHES
-    // function displayHistory() {
-    //     var previousSearchesHTML = ``;
-    
-    //     let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    
-    //     for (var i = 0; i < searchHistory.length; i++) {
-    //         const city = searchHistory[i];
-    //         previousSearchesHTML += `
-    //         <a type="button" onclick="getCityInfo('${city}')">
-    //             <span class="input-group-text border-0 fw-bold" >
-    //                 ${city}
-    //             </span>
-    //         </a>`
-    //     }
-    //     // NEEDS updating if we want to include buttons
-    //     $('#previousCities').html(previousSearchesHTML);
-    // }
-// Bing returns a map with starting and ending address
 
