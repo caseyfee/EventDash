@@ -78,24 +78,18 @@ var userSearchLatLonURL = `https://app.ticketmaster.com/discovery/v2/events?apik
             console.log(eventResponse._embedded.events[i]._embedded.venues[0].address);
 
             var eventid = `${i}`
-    
-
-
-
-            
+                
             eventListHTML = `<div class="flex justify-between items-center bg-white/75 text-black py-5 px-14">
-            <div> 
-                <ul id="events"> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul> 
+            <div>
+                <ul id="events"> <strong>Event Name:</strong> ${eventResponse._embedded.events[i].name} </ul>
                 <ul id="events"> <strong>Date:</strong> ${eventResponse._embedded.events[i].dates.start.localDate} </ul>
                 <ul id="events"> <strong>Time:</strong> ${eventResponse._embedded.events[i].dates.start.localTime} </ul>
                 <ul id="events"> <strong>Location:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].name} </ul>
                 <ul id="events"> <strong>Address:</strong> ${eventResponse._embedded.events[i]._embedded.venues[0].address.line1} </ul>
-            </div> 
-
-            <button <a  href="index2.html" target="_blank" id="myMap" class="px-4 py-2 font-semibold text-black"></a> type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
-            id=eventAddress> Get Directions 
-            
-            </button>
+            </div>
+            <a href="index2.html" target="_blank" id="myMap"><button type="button" class="flex items-center justify-center bg-pink-500  border-l inline-block h-10 px-4 py-2 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            id=eventAddress> Get Directions
+            </button></a>
         </div>`;       
 
             document.querySelector('#eventList').innerHTML+= eventListHTML;
