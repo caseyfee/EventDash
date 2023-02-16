@@ -73,12 +73,14 @@ body{
 }
 
 
-/* added for centering */
+/* Anastasiya, I wasn't sure what to do for styling, but here is just a basic something! -Terri */
+/* for some reason, it looks like we need to style the map itself within the htmm portion? I tried to do it here, and it won't show up. But when I add the height/width in the html (id= myMap) it works? -Terri */
+
+/* IndexHTML notes: Lines 101-112 in the index.html differ from Lines 100-107 in index3.html (which is in individualFiles) */
 #map-container {
   display: inline-block;
   column-count: 2;
-  padding-left: 500px;
-  gap: none;
+  padding-left: 30vw;
 }
 
 #printoutPanel {

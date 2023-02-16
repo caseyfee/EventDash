@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventDash</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Link to the Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <!-- Link to tailwinds -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (CSS Kit)-->
@@ -21,9 +25,9 @@
 </head>
 
 <body class="hero">
-    <!--"Fixed Top-0" NavBar - nav bar will remain on top during scrolling -->
-    <nav >
-       <div>
+
+    <!--Fixed Nav Bar: when user scrolls through the screen, the Nav Bar remains on top of the screen. -->
+    <nav>
             <header class="fixed top-0 z-30 w-full px-1 py-3 bg-white sm:px-4 shadow-xl">
                 <div class=" flex items-center justify-between mx-auto max-w-8xl">
                     <blockquote class="text-6xl p-6 font-semibold italic text-start text-slate-900">
@@ -61,15 +65,12 @@
                     </div>
                 </div>
             </header>
-        </div>
     </nav>
 
-    <!-- main body -->
-    <div class="place-content-center pt-40 pb-40">
-
-        <!-- right content column begin -->
-        <!-- order-2 border-green-500 -->
-        <div class=" flex flex-col flex-wrap w-screen justify-center search-container py-10 gap-5">
+    <!-- The Main Sectin containing the Radius Search GBar, Event List and the Map with Directions -->
+    <section class="place-content-center pt-40 pb-40">
+        
+        <section class=" flex flex-col flex-wrap w-screen justify-center search-container py-10 gap-5">
             <div class="flex items-center text-white justify-center">
                 <h2 class="text-4xl" id="search-bar">Let us help you find your dream Event!</h2>
             </div>
@@ -78,10 +79,14 @@
                 <p>Enter your search radius below to find events near you.</p>
             </div>
 
-            <!-- search container -->
+            <!-- Radius Search Bar -->
             <div class="flex items-center justify-center py-10">
                 <div class="flex border-2 rounded">
+
+                    <!-- Input Field -->
                     <input type="text" id = "radiusInput" class="px-4 py-2 w-80" placeholder="Enter the Radius (ex. 10 mi, 25 mi, etc.)">
+
+                    <!-- Radius Search Button -->
                     <button onclick="enterAddress()" class="flex items-center justify-center px-4 border-l">
                         <svg class="w-6 h-6 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24">
@@ -91,46 +96,54 @@
                     </button>
                 </div>
             </div>
+        </section>
 
-        </div>
-
-        <!-- Event details display -->
-        <!-- style="position:relative ;width:600px;height:400px;" -->
+       <!-- Directions container -->
         <div id="map-container" class="">
-            <div id="myMap" style="width:500px;height:400px;" > </div>
+            <!-- Rendered map -->
+            <div id="myMap" style="width:500px;height:400px;" ></div>
+
+            <!-- Rendered Driving Directions -->
             <div id="printoutPanel"></div>
+
         </div>
         
-        <div class="flex flex-col gap-5 py-5 px-5" id="eventList">
-        </div>
-        <!-- right content column end -->
-    </div>
+         <!-- Event details display -->
+        <section class="flex flex-col gap-5 py-5 px-5" id="eventList"></section>
 
-     <!--"fixed bottom-0 z-30" Footer - footer will remain on top during scrolling -->
-     <footer
-     class="w-full columns-1 flex items-center justify-center space-x-11 bg-white text-black fact-container"
-     id="contact-us">
-     <div class="flex text-center py-1 gap-10 contact">
-         <p class="py-1 self-center"></p>
-         <!-- Font Awesome icons: Email, FB, MS, GitHub, Font Awesome -->
-         <!-- Fictional email address -->
-         <a href="mailto:web-master@webmail123.com"><i class="fa-regular fa-envelope"></i></a>
-         <!-- Enabled hyperlinked icons to open in a new tab. -->
-         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
+    </section>
+
+    <!-- Footer section with the Contact Information -->
+<footer
+    class="w-full columns-1 flex items-center justify-center space-x-11 bg-white text-black fact-container"
+    id="contact-us">
+
+    <!-- Contact Info -->
+    <section class="flex text-center py-1 gap-10 contact">
+        <p class="py-1 self-center"></p>
+        <!-- Font Awesome icons: Email, FB, MS, GitHub, Font Awesome -->
+        <!-- Fictional email address -->
+        <a href="mailto:web-master@webmail123.com"><i class="fa-regular fa-envelope"></i></a>
+        <!-- Enabled hyperlinked icons to open in a new tab. -->
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
                  class="fa-brands fa-facebook"></i></a>
-         <a href="https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api" target="_blank"
+        <a href="https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api" target="_blank"
              rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i></a>
-         <a href="https://github.com/caseyfee/FetchYaPet" target="_blank" rel="noopener noreferrer"><i
+        <a href="https://github.com/caseyfee/FetchYaPet" target="_blank" rel="noopener noreferrer"><i
                  class="py-1 self-center fa-brands fa-github-alt"></i></a>
-         <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer"><i
+        <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer"><i
                  class="fa-brands fa-font-awesome"></i></a>
-     </div>
-     <div class="py-1 flex self-center gap-3">
+    </section>
+
+    <!-- Copyright Info -->
+    <section class="py-1 flex self-center gap-3">
          <p>Copyright © 2023 EventDash Inc.</p>
          <!-- Font Awesome - Shoe prints -->
          <i class="fa-solid fa-shoe-prints"></i>
-     </div>
- </footer>
+    </section>
+</footer>
+
+    <!-- Links to JavaScript -->
     <script src="./navbarmenu.js"></script>
     <script src="./script.js"></script>
 
