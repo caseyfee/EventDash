@@ -56,31 +56,15 @@ body{
 }
 
 /* Styling of the Hide class that contains the Map with Directions */
-.hide{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-
-}
-
-.hide-div{
-  display:none;
-  width: 800px;
-  height: 500px;
-  border-radius: 10px;
-  border-color: white;
-}
-
-
-/* Anastasiya, I wasn't sure what to do for styling, but here is just a basic something! -Terri */
-/* for some reason, it looks like we need to style the map itself within the htmm portion? I tried to do it here, and it won't show up. But when I add the height/width in the html (id= myMap) it works? -Terri */
-
-/* IndexHTML notes: Lines 101-112 in the index.html differ from Lines 100-107 in index3.html (which is in individualFiles) */
 #map-container {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   column-count: 2;
-  padding-left: 30vw;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 10px;
+  border-radius: 10px;
 }
 
 #printoutPanel {
@@ -88,5 +72,5 @@ body{
   opacity: 75%;
   overflow-y: auto;
   max-height: 400px; 
-  max-width: 370px;
+  max-width: 400px;
 }

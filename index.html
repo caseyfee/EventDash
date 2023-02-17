@@ -41,15 +41,15 @@
                     <!-- Navigation Links -->
                     <div class="flex items-center space-x-1">
                         <ul class="hidden space-x-2 md:inline-flex">
-                            <li><a href="#" class="px-4 py-2 font-semibold text-black">Home</a></li>
-                            <li><a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event Search</a></li>
+                            <li><a href="#searchBar" class="px-4 py-2 font-semibold text-black">Event Search</a></li>
+                            <li><a href="#eventList" class="px-3 py-1 font-semibold text-black">List of Events</a></li>
                             <li><a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact Us</a></li>
                         </ul>
 
                         <!-- Responsive Mobile Design for menu bar to hide the links when the application is open in the mobile devices  -->
                         <div class="menu-bar inline-flex md:hidden">
                             <button onclick="openMenu()" class="menubtn flex-none px-5 py-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 20 20"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 8h16M4 16h16" />
@@ -57,9 +57,9 @@
                                 <span class="sr-only">Open Menu</span>
                             </button>
                             <div id="myMenu" class="menu-content">
-                            <a href="#" class="px-4 py-2 font-semibold text-black">Home</a>
-                            <a href="#search-bar" class="px-4 py-2 font-semibold text-black">Event Search</a>
-                            <a href="#contact-us" class="px-4 py-2 font-semibold text-black">Contact Us</a>
+                            <a href="#searchBar" class="px-3 py-1 font-semibold text-black">Event Search</a>
+                            <a href="#eventList" class="px-3 py-1 font-semibold text-black">List of Events</a>
+                            <a href="#contact-us" class="px-3 py-1 font-semibold text-black">Contact Us</a>
                             </div>
                         </div> 
                     </div>
@@ -68,9 +68,9 @@
     </nav>
 
     <!-- The Main Sectin containing the Radius Search GBar, Event List and the Map with Directions -->
-    <section class="place-content-center pt-40 pb-40">
+    <section id="searchBar" class="place-content-center pt-40 pb-40">
         
-        <section class=" flex flex-col flex-wrap w-screen justify-center search-container py-10 gap-5">
+        <section class=" flex flex-col flex-wrap w-screen justify-center search-container py-5 gap-5">
             <div class="flex items-center text-white justify-center">
                 <h2 class="text-4xl" id="search-bar">Let us help you find your dream Event!</h2>
             </div>
@@ -80,7 +80,7 @@
             </div>
 
             <!-- Radius Search Bar -->
-            <div class="flex items-center justify-center py-10">
+            <div class="flex items-center justify-center py-2">
                 <div class="flex border-2 rounded">
 
                     <!-- Input Field -->
@@ -96,20 +96,26 @@
                     </button>
                 </div>
             </div>
+            <div class="flex items-center text-white justify-center">
+                <p class="text-sm">* To navigate to the list of Events, you can either click "List of Events" button located at the top of the screen or scroll down.</p>
+            </div>
+           
         </section>
 
        <!-- Directions container -->
-        <div id="map-container" class="">
-            <!-- Rendered map -->
-            <div id="myMap" style="width:500px;height:400px;" ></div>
+       
+       <!-- Event details display -->
+       <section class="flex flex-col gap-5 py-5 px-5" id="eventList">
+            <div id="map-container" class="rounded">
+                <!-- Rendered map -->
+                <div id="myMap" style="width:400px;height:400px;" ></div>
+     
+                <!-- Rendered Driving Directions -->
+                <div id="printoutPanel"></div>
+     
+            </div>
 
-            <!-- Rendered Driving Directions -->
-            <div id="printoutPanel"></div>
-
-        </div>
-        
-         <!-- Event details display -->
-        <section class="flex flex-col gap-5 py-5 px-5" id="eventList"></section>
+        </section>
 
     </section>
 
@@ -139,7 +145,7 @@
     <section class="py-1 flex self-center gap-3">
          <p>Copyright © 2023 EventDash Inc.</p>
          <!-- Font Awesome - Shoe prints -->
-         <i class="fa-solid fa-shoe-prints"></i>
+         <i class="py-1 flex self-center gap-3 fa-solid fa-shoe-prints"></i>
     </section>
 </footer>
 
