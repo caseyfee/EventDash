@@ -43,7 +43,7 @@ In addition to HTML, CSS, and JavaScript, we used the following technologies for
 | [Bing Maps API](https://learn.microsoft.com/en-us/bingmaps/) |  This is a geospatial mapping API. It provides visualization of maps and directions for dynamic web or mobile geolocation services. |
 | [Tailwind CSS](https://tailwindcss.com/) | This is an open source, utility-first CSS framework for styling dynamic webpages.|
 | [jQuery](https://jquery.com/) | A JavaScript library used for DOM and event handling. |
-| [Font Awesome](https://fontawesome.com/)%7C Provides a collection of free icons and toolkits (you have to make a free account). |
+| [Font Awesome](https://fontawesome.com/) Provides a collection of free icons and toolkits (you have to make a free account). |
 
 
 # Acceptance Criteria
@@ -68,7 +68,7 @@ In addition to HTML, CSS, and JavaScript, we used the following technologies for
 | Developers         | GitHub Profile|
 | -----------  | ----------- |
 |Bryan Buechler | [Bryan-Codes](https://github.com/Bryan-Codes)  |
-|Casey Fee|[caseyfee](https://github.com/caseyfee)%7C
+|Casey Fee|[caseyfee](https://github.com/caseyfee)
 |Christy Hanson |[ChristyGHanson](https://github.com/ChristyGHanson) |
-|Terri Mack |[terrinmack](https://github.com/terrinmack)%7C
-|Anastasiya Rylova|[anryl050](https://github.com/anryl050)%7C
+|Terri Mack |[terrinmack](https://github.com/terrinmack)
+|Anastasiya Rylova|[anryl050](https://github.com/anryl050)
