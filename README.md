@@ -43,7 +43,7 @@ In addition to HTML, CSS, and JavaScript, we used the following technologies for
 | [Bing Maps API](https://learn.microsoft.com/en-us/bingmaps/) |  This is a geospatial mapping API. It provides visualization of maps and directions for dynamic web or mobile geolocation services. |
 | [Tailwind CSS](https://tailwindcss.com/) | This is an open source, utility-first CSS framework for styling dynamic webpages.|
 | [jQuery](https://jquery.com/) | A JavaScript library used for DOM and event handling. |
-| [Font Awesome](https://fontawesome.com/) Provides a collection of free icons and toolkits (you have to make a free account). |
+| [Font Awesome](https://fontawesome.com/) | Provides a collection of free icons and toolkits (you have to make a free account). |
 
 
 # Acceptance Criteria
