@@ -2,44 +2,48 @@
 
 ## Description
 
-🎵 EventDash is a web search page that will help users discover nearby local concerts based on their address input. 
-
-# Application Features
-For this application, we included the following APIs:
-
-| API         | Description |
-| ----------- | ----------- |
-| [Ticketmaster API](https://developer.ticketmaster.com/) | Description |
-| [Bing Maps API](https://learn.microsoft.com/en-us/bingmaps/) | Description |
+[EventDash](https://caseyfee.github.io/EventDash/) is a dynamic web search page that will help users discover nearby local events based on their radius input. The website also provides driving directions to the user's selected event.
 
 # How to Use EventDash
 
-Here are  step-by-step instructions for using this application.
-(Insert examples/screenshots for each step.)
+Here are  step-by-step instructions for using the EventDash website features.
 
 ## How to Search for Events
-1. Enter a [name] in the text box and click search.
+1. Enter a radius in the text box (e.g., 10, 25, etc.) and click the 'Search' button. A list of events will populate below the search bar. Your browser may prompt you to allow location-sharing. Allow the browser to do so.
 
-![Step 1 screenshot](link)
-
-2. step 2
-
-![Step 2 screenshot](link)
-
-3. Step 3
-
-![Step 3 screenshot](link)
-
-## Using the Map Modal [to be determined]
-
-(Insert description of the map modal here.)
+![EventDash](https://user-images.githubusercontent.com/118693401/219531900-0edbefac-198c-4f20-ad11-914ebb167796.png)
 
 
-![map modal screen shot](link)
+
+2. Click on the Get Directions button to the right to view driving directions to the selected event. The button will change color if you hover on it with your cursor.
+
+![EventDash (1)](https://user-images.githubusercontent.com/118693401/219531992-9178ccc5-e629-45a5-adb1-56cf3fb5c7d1.png)
+
+
+
+3. The map of your geolocation and driving directions for your selected event will appear on the screen.
+
+![EventDash (2)](https://user-images.githubusercontent.com/118693401/219532114-9a9daa84-ef07-43d9-bc6a-28d49dd751c4.png)
+
+
+
+4. To start a new search, enter a new radius in the search bar. You can also click on Get Directions for a different event to view it.
 
 # Troubleshooting
 
-Contact us for technical assistance by emailing us at webmaster@example.com.
+Contact our team at our GitHub profiles for technical assistance.
+
+# Technology Used
+
+In addition to HTML, CSS, and JavaScript, we used the following technologies for this website.
+
+| Tech         | Description |
+| ----------- | ----------- |
+| [Ticketmaster API](https://developer.ticketmaster.com/) | The Ticketmaster Discovery API allows users to search for events, attractions, or venues. |
+| [Bing Maps API](https://learn.microsoft.com/en-us/bingmaps/) |  This is a geospatial mapping API. It provides visualization of maps and directions for dynamic web or mobile geolocation services. |
+| [Tailwind CSS](https://tailwindcss.com/) | This is an open source, utility-first CSS framework for styling dynamic webpages.|
+| [jQuery](https://jquery.com/) | A JavaScript library used for DOM and event handling. |
+| [Font Awesome](https://fontawesome.com/)%7C Provides a collection of free icons and toolkits (you have to make a free account). |
 
 
 # Acceptance Criteria
@@ -56,15 +60,15 @@ Contact us for technical assistance by emailing us at webmaster@example.com.
 * Must be interactive (i.e. accept and respond to user input.)
 
 ## When/Then statements
-* When a user enters their address in the search bar, the application will populate nearby events in relation to their location.
+* When a user enters their radius in the search bar, the application will populate nearby events in relation to their geolocation.
 
 
 # Credits 
 
 | Developers         | GitHub Profile|
 | -----------  | ----------- |
-| Bryan Buechler | [Bryan-Codes](https://github.com/Bryan-Codes)  |
-|Casey Fee|[caseyfee](https://github.com/caseyfee)|
+|Bryan Buechler | [Bryan-Codes](https://github.com/Bryan-Codes)  |
+|Casey Fee|[caseyfee](https://github.com/caseyfee)%7C
 |Christy Hanson |[ChristyGHanson](https://github.com/ChristyGHanson) |
-|Terri Mack |[terrinmack](https://github.com/terrinmack)|
-|Anastasiya Rylova|[anryl050](https://github.com/anryl050)|
+|Terri Mack |[terrinmack](https://github.com/terrinmack)%7C
+|Anastasiya Rylova|[anryl050](https://github.com/anryl050)%7C
